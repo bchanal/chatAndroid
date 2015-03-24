@@ -1,5 +1,6 @@
 package com.excilys.formation.berangere.mychat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
@@ -11,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.excilys.formation.berangere.mychat.Task.LoginTask;
 
 import java.util.UUID;
 
@@ -41,11 +44,6 @@ public class LoginActivity extends ActionBarActivity implements LoginListener, V
         send = (Button) findViewById(R.id.envoyer);
 
         cancel.setOnClickListener(this);
-//            public void onClick(View v) {
-//                Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
         send.setOnClickListener(this);
     }
 
@@ -70,16 +68,15 @@ public class LoginActivity extends ActionBarActivity implements LoginListener, V
 
     public void onLoginSuccess() {
         Toast.makeText(getApplicationContext(), "connecté", Toast.LENGTH_SHORT).show();
+        Intent t  = new Intent(this, MessagesActivity.class);
+        Log.i(TAG, "ok connection");
+        ((Activity)this).startActivity(t);
     }
 
     @Override
     public void onLoginFail() {
+        Log.i(TAG, "oh mince j'ai fail");
         Toast.makeText(getApplicationContext(), "echec de connection", Toast.LENGTH_SHORT).show();
-
-    }
-
-    public void onProgressUpdate() {
-        Toast.makeText(getApplicationContext(), "running", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -99,9 +96,9 @@ public class LoginActivity extends ActionBarActivity implements LoginListener, V
                     loginTask.execute();
                 }
 
-                new LoginTask(this).execute();
+//                new LoginTask(this).execute();
 
-                startActivity(new Intent(getApplicationContext(), MessagesActivity.class));
+//                startActivity(new Intent(getApplicationContext(), MessagesActivity.class));
             }
             case R.id.vider: {
 

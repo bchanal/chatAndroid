@@ -8,23 +8,24 @@ import android.util.Log;
 import android.widget.ListView;
 
 
+import com.excilys.formation.berangere.mychat.Task.MessagesTask;
+import com.excilys.formation.berangere.mychat.model.Message;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by berangere on 16/03/15.
  */
-public class MessagesActivity extends Activity {
+public class MessagesActivity extends Activity implements MessagesListener {
 
     private ListView messages;
     private List<Message> list;
@@ -37,44 +38,13 @@ public class MessagesActivity extends Activity {
 
         Context context = getApplicationContext();
 
-        messages.findViewById(R.id.activity_message);
-        messages.setAdapter(new MessagesAdapter(list, context));
-
-        List<Message> staticMessages = Arrays.asList(
-                new Message("beran", "ça va trop viiiite !"),
-                new Message("beran", "bonjour")
-        );
+        messages = (ListView)findViewById(R.id.listMessages);
+        MessagesTask task =  new MessagesTask(this);
+//        task.execute(b.getString("login", "beran"), b.getString("pwd", "schtroumpf"));
+        task.execute("beran", "schtroumpf");
 
     }
 
-
-    protected String doInBackground(String... uri) {
-        HttpClient httpclient = new DefaultHttpClient();
-        HttpResponse response;
-        String responseString = null;
-        try {
-            String name = uri[0];
-            String password = uri[1];
-
-            response = httpclient.execute(new HttpGet("http://training.loicortola.com/parlez-vous-android/connect/" + name + "/" + password));
-            StatusLine statusLine = response.getStatusLine();
-            if (statusLine.getStatusCode() == HttpStatus.SC_OK) {
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                response.getEntity().writeTo(out);
-                Log.i(TAG, response.toString());
-                responseString = out.toString();
-                out.close();
-            } else {
-                //Closes the connection.
-                response.getEntity().getContent().close();
-                throw new IOException(statusLine.getReasonPhrase());
-            }
-        } catch (IOException e) {
-            //TODO Handle problems..
-        }
-        Log.i(TAG, responseString);
-        return responseString;
-    }
 
     protected void envoyerMessage(Message m) {
         HttpClient httpclient = new DefaultHttpClient();
@@ -97,8 +67,13 @@ public class MessagesActivity extends Activity {
                 throw new IOException(statusLine.getReasonPhrase());
             }
         } catch (IOException e) {
-            //TODO Handle problems..
-        }
+            e.printStackTrace();
+            Log.i(TAG, e.getMessage());}
     }
 
+    @Override
+    public void getAllMessages(List<Message> list) {
+        MessagesAdapter mAdapt = new MessagesAdapter(list, this);
+        messages.setAdapter(mAdapt);
+    }
 }
