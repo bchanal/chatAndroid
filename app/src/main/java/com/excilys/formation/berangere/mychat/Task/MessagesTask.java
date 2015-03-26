@@ -2,7 +2,7 @@ package com.excilys.formation.berangere.mychat.Task;
 
 import android.os.AsyncTask;
 
-import com.excilys.formation.berangere.mychat.MessagesListener;
+import com.excilys.formation.berangere.mychat.Listener.MessagesListener;
 import com.excilys.formation.berangere.mychat.model.Message;
 import com.excilys.formation.berangere.mychat.util.ServiceAccess;
 

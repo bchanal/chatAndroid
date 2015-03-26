@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.excilys.formation.berangere.mychat.Listener.LoginListener;
 import com.excilys.formation.berangere.mychat.Task.LoginTask;
 
 import java.util.UUID;

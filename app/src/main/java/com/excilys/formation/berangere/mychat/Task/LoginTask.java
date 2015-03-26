@@ -2,21 +2,11 @@ package com.excilys.formation.berangere.mychat.Task;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import com.excilys.formation.berangere.mychat.LoginListener;
+
+import com.excilys.formation.berangere.mychat.Listener.LoginListener;
 import com.excilys.formation.berangere.mychat.MessagesActivity;
 import com.excilys.formation.berangere.mychat.model.Connection;
 import com.excilys.formation.berangere.mychat.util.ServiceAccess;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 /**
  * Created by berangere on 16/03/15.

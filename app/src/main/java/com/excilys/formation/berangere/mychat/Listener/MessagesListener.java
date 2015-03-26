@@ -1,4 +1,4 @@
-package com.excilys.formation.berangere.mychat;
+package com.excilys.formation.berangere.mychat.Listener;
 
 import com.excilys.formation.berangere.mychat.model.Message;
 

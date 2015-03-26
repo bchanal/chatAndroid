@@ -14,10 +14,11 @@ public class Message {
     private String message;
 
 
-    public Message(String a, String m) {
+    public Message(String a, String m, String uuid) {
 
         this.author = a;
         this.message = m;
+        this.uuid = uuid;
     }
 
 
