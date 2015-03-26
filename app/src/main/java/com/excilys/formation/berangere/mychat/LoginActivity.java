@@ -94,7 +94,7 @@ public class LoginActivity extends ActionBarActivity implements LoginListener, V
                     //wait
                 } else if (loginTask.getStatus().equals(AsyncTask.Status.FINISHED)) {
                     loginTask = new LoginTask(this);
-                    loginTask.execute();
+                    loginTask.execute(name.getText().toString(), password.getText().toString());
                 }
 
 //                new LoginTask(this).execute();
@@ -102,6 +102,8 @@ public class LoginActivity extends ActionBarActivity implements LoginListener, V
 //                startActivity(new Intent(getApplicationContext(), MessagesActivity.class));
             }
             case R.id.vider: {
+                name.setText("");
+                password.setText("");
 
                 Toast.makeText(getApplicationContext(), "Cancel", Toast.LENGTH_SHORT).show();
 

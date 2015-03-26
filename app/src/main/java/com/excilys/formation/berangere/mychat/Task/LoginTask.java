@@ -6,6 +6,7 @@ import android.util.Log;
 import com.excilys.formation.berangere.mychat.Listener.LoginListener;
 import com.excilys.formation.berangere.mychat.MessagesActivity;
 import com.excilys.formation.berangere.mychat.model.Connection;
+import com.excilys.formation.berangere.mychat.model.User;
 import com.excilys.formation.berangere.mychat.util.ServiceAccess;
 
 /**
@@ -25,8 +26,11 @@ public class LoginTask extends AsyncTask<String, Void, Boolean> {
     protected Boolean doInBackground(String... params) {
         Connection c =null;
         String name = params[0];
+        User.name=name;
         String password = params[1];
+        User.password = password;
         ServiceAccess sa = new ServiceAccess();
+        Log.i(name,password);
         try{
             c= sa.getConnection(name, password);
         }

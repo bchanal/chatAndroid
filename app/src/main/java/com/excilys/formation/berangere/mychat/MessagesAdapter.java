@@ -17,7 +17,6 @@ import java.util.List;
 public class MessagesAdapter extends BaseAdapter {
 
     private List<Message> messages;
-    private Context contexte;
     private LayoutInflater lInflater;
 
 
