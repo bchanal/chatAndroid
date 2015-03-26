@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listMessages">
+        android:layout_weight="1"
+        android:id="@+id/listMessages"
+        android:layout_alignParentBottom="true">
 
     </ListView>
 
@@ -22,13 +25,30 @@
             android:id="@+id/msgEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="votre message"/>
+            android:hint="votre message"
+            android:layout_alignParentBottom="true"
+        />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/postMsg"
-            android:text="Envoyer"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:id="@+id/boutons"
+            android:layout_alignParentBottom="true">
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/postMsg"
+                android:text="Envoyer"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/refresh"
+                android:text="Rafraichir"/>
         </LinearLayout>
-    </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>
